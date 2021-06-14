@@ -9,9 +9,9 @@ try {
 
 
 db ={
-    user:'orainst1',
-    password:'Easy0123',
-    connectString:"(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=104.239.218.158)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=EYCOMARP)))"
+    user:process.env.USER_ORACLE,
+    password:process.env.PASSW_ORACLE,
+    connectString:process.env.BD_ORACLE
 }
 async function open(sql, binds){
     try {

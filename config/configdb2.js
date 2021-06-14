@@ -1,5 +1,6 @@
 
-const connStr = "DATABASE=EASYAR;HOSTNAME=172.18.153.69;UID=bodba;PWD=bodba;PORT=50000;PROTOCOL=TCPIP";
+const connStr = process.env.BD_DB2;
+console.log(connStr)
 
 
 module.exports = connStr;

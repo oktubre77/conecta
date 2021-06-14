@@ -1,5 +1,5 @@
 var ibmdb = require('ibm_db');
-var connStr = "DATABASE=EASYAR;HOSTNAME=172.26.228.72;UID=bodba;PWD=bodba;PORT=50000;PROTOCOL=TCPIP";
+var connStr = process.env.BD_DB2_TEST;
 
 ibmdb.open(connStr, function (err,conn) {
     if (err) return console.log(err);
