@@ -9,7 +9,7 @@ try {
 
 
 db ={
-    user:'Orainst1',
+    user:'orainst1',
     password:'Easy0123',
     connectString:"(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=104.239.218.158)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=EYCOMARP)))"
 }
@@ -18,6 +18,7 @@ async function open(sql, binds){
     let con = await oracledb.getConnection(db);
     let result = await con.execute(sql,binds);
     con.release();
+    
     return result;
     
 } catch(err) {

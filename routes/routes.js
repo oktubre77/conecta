@@ -15,14 +15,18 @@ router.get('/',(req,res)=>{
     });
 })
 
-router.get('/fromoracle',async(req,res)=>{
+router.get('/apiPedidosFront',async(req,res)=>{
    const datos=[];
-   const sql ="SELECT ORDERS_ID,TOTALPRODUCT,TOTALSHIPPING,STATUS  FROM  ORDERS WHERE substr(lastupdate,0,10) IN to_char((select sysdate from dual)) AND STATUS IN('G','R','M') ";
+    const fecha='13/06/2021'
+   //const sql ="select ORDERS_ID,TOTALPRODUCT,TOTALSHIPPING,STATUS  from orders where Orders_id=11531031";
+   const sql ="SELECT ORDERS_ID,TOTALPRODUCT,TOTALSHIPPING,STATUS FROM ORDERS WHERE substr (lastupdate,0,10)='13/06/2021' ";
+   console.log(sql)
    //let sql ="select * from comreg where NAME like '%DATALOAD_PRICE_PURGE_PORCENTAGE_MAX%'";
+   //to_char((select sysdate from dual))
 
     const result =await DB.open(sql,[]);
-    console.log(result.rows[0]['ORDERS_ID']);
-    //console.log(datos)
+    
+    console.log(result)
 
     result.rows.map(dato=>{
         let userSchema = {
@@ -32,11 +36,12 @@ router.get('/fromoracle',async(req,res)=>{
             STATUS :dato[3],
          }
         datos.push(userSchema)
+        console.log(datos)
     });
     res.json({datos})
 });
 
-router.get('/fromsql',async(req,res)=>{
+router.get('/apiPedidosHasar',async(req,res)=>{
     
     try {
         let select = await sql1.select("TRANSACCIONES","TIPOSTRANSACCION");
@@ -49,7 +54,7 @@ router.get('/fromsql',async(req,res)=>{
     
 });
 
-router.get('/fromdb2',async(req,res)=>{
+router.get('/apiPedidosBoc',async(req,res)=>{
 
     ibmdb.open(connStr, function (err,conn) {
     if (err) return console.log(err);
